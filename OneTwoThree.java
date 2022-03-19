@@ -9,6 +9,9 @@ import java.util.concurrent.Semaphore;
  * This causes a sort of staggered start, where only one thread is
  * running at a time, then two (after two seconds), 
  * then three (after three seconds) running at the same time.
+ * 
+ * This behavior is possible because each call to release() increments 
+ * the semaphore's number of available permits by one.
  */
 public class OneTwoThree {
 
