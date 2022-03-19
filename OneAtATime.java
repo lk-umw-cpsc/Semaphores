@@ -7,6 +7,7 @@ import java.util.concurrent.Semaphore;
  */
 public class OneAtATime {
     public static void main(String[] args) {
+        // Permit only a single thread to run at a time
         Semaphore s = new Semaphore(1, true);
 
         // Initialize ten workers
