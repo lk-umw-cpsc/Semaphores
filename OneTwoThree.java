@@ -16,17 +16,23 @@ import java.util.concurrent.Semaphore;
 public class OneTwoThree {
 
     public static void main(String[] args) {
+        // Start with *no* available permits
         Semaphore s = new Semaphore(0, true);
+
+        // Initialize 10 workers
         Worker[] workers = new Worker[10];
 
         for (int i = 0, num = workers.length; i < num; i++) {
             workers[i] = new Worker(s, "Worker " + (i + 1));
         }
 
+        // Start worker threads
         for (Worker w : workers) {
             new Thread(w).start();
         }
         
+        // Increase number of workers allowed to run by 1 every 1 second,
+        // eventually allowing three to run at once.
         try {
             for (int i = 0; i < 3; i++) {
                 Thread.sleep(1000);
