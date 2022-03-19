@@ -11,8 +11,9 @@ import java.util.concurrent.Semaphore;
  * then three (after three seconds) running at the same time.
  */
 public class OneTwoThree {
+
     public static void main(String[] args) {
-        Semaphore s = new Semaphore(1, true);
+        Semaphore s = new Semaphore(0, true);
         Worker[] workers = new Worker[10];
 
         for (int i = 0, num = workers.length; i < num; i++) {

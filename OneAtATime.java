@@ -9,11 +9,13 @@ public class OneAtATime {
     public static void main(String[] args) {
         Semaphore s = new Semaphore(1, true);
 
+        // Initialize ten workers
         Worker[] workers = new Worker[10];
         for (int i = 0, num = workers.length; i < num; i++) {
             workers[i] = new Worker(s, "Worker " + (i + 1));
         }
 
+        // Create a new thread for each worker
         for (Worker w : workers) {
             new Thread(w).start();
         }
